@@ -139,10 +139,30 @@ function InfoCard({ icon: Icon, title, description, number, variant = 'learning'
         <span className="card-icon"><Icon size={21} strokeWidth={1.6} aria-hidden="true" /></span>
         <span className="card-number">{number}</span>
       </div>
+      {variant === 'learning' && <LearningSculpture kind={number} title={title} />}
       <h3>{title}</h3>
       <p>{description}</p>
       <span className="card-arrow" aria-hidden="true">↗</span>
     </article>
+  );
+}
+
+function LearningSculpture({ kind, title }) {
+  const id = `object-${kind}`;
+  return (
+    <svg className={`learning-sculpture sculpture-${kind}`} viewBox="0 0 300 120" role="img" aria-label={`Isometric illustration for ${title}`}>
+      <defs>
+        <linearGradient id={`${id}-steel`} x1="0" y1="0" x2="1" y2="1"><stop stopColor="#e1edf5"/><stop offset=".48" stopColor="#8098ad"/><stop offset="1" stopColor="#344c61"/></linearGradient>
+        <linearGradient id={`${id}-blue`} x1="0" y1="0" x2="1" y2="1"><stop stopColor="#7bcbff"/><stop offset="1" stopColor="#316eb5"/></linearGradient>
+        <linearGradient id={`${id}-dark`} x1="0" y1="0" x2="0" y2="1"><stop stopColor="#27445d"/><stop offset="1" stopColor="#101f2d"/></linearGradient>
+        <filter id={`${id}-shadow`} x="-40%" y="-60%" width="180%" height="220%"><feGaussianBlur stdDeviation="5"/></filter>
+      </defs>
+      <ellipse cx="150" cy="101" rx="82" ry="8" fill="#010810" opacity=".55" filter={`url(#${id}-shadow)`}/>
+      {kind === '01' && <g className="sculpture-object"><path d="m83 71 60-34 77 32-61 37Z" fill={`url(#${id}-dark)`} stroke="#7190aa"/><path d="m95 70 49-27 62 26-49 27Z" fill={`url(#${id}-steel)`}/><path d="M95 70v13l62 28V96Z" fill="#2d465c"/><path d="m157 96 49-27v13l-49 29Z" fill="#192e40"/><ellipse cx="143" cy="68" rx="27" ry="17" fill="#1a2c3b" stroke="#a6bfd0" strokeWidth="2"/><ellipse cx="143" cy="68" rx="17" ry="10" fill="#637d92" stroke="#d1e0e9"/><ellipse cx="143" cy="68" rx="7" ry="4" fill="#142434"/><path d="M116 61v-13c0-8 12-14 27-14s27 6 27 14v13" fill={`url(#${id}-steel)`} stroke="#c5d4df"/><ellipse cx="143" cy="48" rx="27" ry="14" fill="#9baebe" stroke="#dbe6ee"/><path d="M189 43c15 8 15 25 0 34m7-40c21 12 21 33 0 46" fill="none" stroke="#69baff" strokeWidth="1.5" strokeDasharray="3 4"/><circle className="sensor-pulse" cx="207" cy="40" r="3" fill="#80dcb2"/><path d="m207 40 17-12h21" stroke="#8fcaff" strokeDasharray="2 3"/></g>}
+      {kind === '02' && <g className="sculpture-object"><path d="m63 81 79-44 99 42-81 39Z" fill="#243c50" stroke="#829cb1"/><path d="m63 81v9l97 29v-9Z" fill="#162a3a"/><path d="m160 110 81-40v9l-81 40Z" fill="#101f2c"/><path d="m75 78 66-35 82 34-67 33Z" fill="#7991a4"/><path d="M91 78h141" stroke="#c0d0db" strokeWidth="2"/><path d="M108 68v-18h57v18" fill="#233b50" stroke="#b0c1ce" strokeWidth="2"/><path d="M120 50V36h33v14" fill="#132535" stroke="#7ec5ff"/><circle cx="136" cy="43" r="7" fill="#071522" stroke="#94d2ff"/><path d="m176 61 29-15v17l-29 15Z" fill={`url(#${id}-steel)`}/><rect className="inspection-pulse" x="179" y="57" width="29" height="17" fill="none" stroke="#ffb16e" strokeWidth="1.5" strokeDasharray="3 2"/><path d="M193 57V39h31" stroke="#ffb16e"/><circle cx="92" cy="87" r="3" fill="#8acbff"/><circle cx="218" cy="78" r="3" fill="#8acbff"/></g>}
+      {kind === '03' && <g className="sculpture-object"><path d="m97 91 47-26 63 23-49 27Z" fill="#20384c" stroke="#7592aa"/><path d="M116 89 128 69l-9-15 20-15 17 7-9 18 22 12-10 16-24-12-7 12Z" fill={`url(#${id}-steel)`} stroke="#d4e0e9" strokeWidth="2"/><circle cx="139" cy="49" r="9" fill="#36546d" stroke="#8ecbff" strokeWidth="2"/><circle cx="153" cy="70" r="7" fill="#3b5870" stroke="#8ecbff" strokeWidth="2"/><path d="m157 63 21-19 13 5-13 13" fill={`url(#${id}-steel)`} stroke="#d4e0e9" strokeWidth="2"/><circle cx="183" cy="48" r="5" fill="#31506a" stroke="#8ecbff" strokeWidth="2"/><path d="m188 46 10-9 4 2-7 12m4-8 8 4-2 3-9-2" fill="none" stroke="#dce8ef" strokeWidth="2"/><path className="motion-path" d="M164 79c28-4 44-18 43-37" fill="none" stroke="#71bbff" strokeDasharray="3 4"/><path d="M201 42l6-7 5 8" fill="none" stroke="#71bbff"/><path d="M108 92v9m54 8v7m44-21v9" stroke="#92abc0" strokeWidth="2"/></g>}
+      {kind === '04' && <g className="sculpture-object"><path d="m59 79 88-47 104 45-91 47Z" fill="#1a3043" stroke="#7390a8"/><path d="m76 79 71-38 79 35-74 40Z" fill="#2b455b" stroke="#8eb0cd"/><path d="m92 78 25-13 27 12-26 14Z" fill="#9eb2c2"/><path d="M92 78v15l26 12V91Z" fill="#435a6b"/><path d="m118 91 26-14v15l-26 13Z" fill="#293e50"/><path d="m135 69 26-14 27 12-27 15Z" fill="#9cb1c1"/><path d="M135 69v15l26 13V82Z" fill="#445a6d"/><path d="m161 82 27-15v15l-27 15Z" fill="#263b4d"/><path d="m175 98 24-13 24 11-25 13Z" fill="#a9bbc9"/><path d="M175 98v10l23 10v-9Z" fill="#52697b"/><path d="m198 109 25-13v10l-25 13Z" fill="#263a4a"/><path className="motion-path" d="m118 83 17-8m52 8 12 5m-45 4 21 10" stroke="#72bdff" strokeWidth="1.5" strokeDasharray="3 3"/><circle cx="133" cy="76" r="3" fill="#7fcaff"/><circle cx="198" cy="89" r="3" fill="#ffb36e"/><circle cx="173" cy="102" r="3" fill="#7fcaff"/></g>}
+    </svg>
   );
 }
 
